@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
 from app.api.endpoints.chat import ChatRequest, ChatResponse, handle_message
+from app.api.endpoints.report import ReportRequest, analyze_consumption
 
 app = FastAPI()
 
@@ -16,3 +17,11 @@ def chat_with_user(request: ChatRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
+
+@app.post("/llm/analyze_consumption")
+def report_with_llm(request: ReportRequest):
+    try:
+        result = analyze_consumption(request)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

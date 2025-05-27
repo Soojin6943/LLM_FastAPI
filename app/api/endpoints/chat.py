@@ -72,6 +72,8 @@ def handle_message(message: str):
         tool_choice="auto"
     )
 
+# 함수 코드 실행 - 모델의 응답을 구문 분석하고 함수 호출을 처리
+
     msg = response.choices[0].message
 
     # 함수 호출이 있는 경우
@@ -92,9 +94,3 @@ def handle_message(message: str):
             "reply": msg.content
         }
     
-
-# # 함수 코드 실행 - 모델의 응답을 구문 분석하고 함수 호출을 처리
-# tool_call = response.choices[0].message.tool_calls[0]
-# args = json.loads(tool_call.function.arguments)
-
-# print(args)
